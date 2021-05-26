@@ -4,9 +4,9 @@ import com.personal.tictactoe.R;
 
 public class GameUtils {
 
-    String X;
-    String O;
-    String EMPTY;
+    private String X;
+    private String O;
+    private String EMPTY;
 
     public GameUtils() {
         X = "X";

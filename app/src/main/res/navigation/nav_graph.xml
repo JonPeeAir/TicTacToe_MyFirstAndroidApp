@@ -40,7 +40,7 @@
         android:label="fragment_local_game"
         tools:layout="@layout/fragment_local_game_menu" />
     <fragment
-        android:id="@+id/gameWithBotFragment"
+        android:id="@+id/againstJeffMenuFragment"
         android:name="com.personal.tictactoe.GameModes.AgainstJeffGame.AgainstJeffMenuFragment"
         android:label="fragment_game_with_bot"
         tools:layout="@layout/fragment_against_jeff_menu" />
@@ -168,5 +168,9 @@
         android:id="@+id/againstJeffFragment"
         android:name="com.personal.tictactoe.GameModes.AgainstJeffGame.AgainstJeffFragment"
         android:label="fragment_against_jeff"
-        tools:layout="@layout/fragment_against_jeff" />
+        tools:layout="@layout/fragment_against_jeff" >
+        <argument
+            android:name="player_choice"
+            app:argType="string" />
+    </fragment>
 </navigation>

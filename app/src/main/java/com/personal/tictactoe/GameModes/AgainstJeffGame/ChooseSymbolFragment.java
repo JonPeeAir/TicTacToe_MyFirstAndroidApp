@@ -5,6 +5,8 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
+import androidx.navigation.ui.NavigationUI;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,8 +19,10 @@ import org.jetbrains.annotations.NotNull;
 
 public class ChooseSymbolFragment extends Fragment {
 
-    Button xButton;
-    Button oButton;
+    private Button xButton;
+    private Button oButton;
+
+    private ChooseSymbolFragmentDirections.ActionChooseSymbolFragmentToAgainstJeffFragment action;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -36,6 +40,23 @@ public class ChooseSymbolFragment extends Fragment {
     public void onViewCreated(@NonNull @NotNull View view, @Nullable @org.jetbrains.annotations.Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        // Set up the "X" choice
+        xButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                action = ChooseSymbolFragmentDirections.actionChooseSymbolFragmentToAgainstJeffFragment("X");
+                Navigation.findNavController(view).navigate(action);
+            }
+        });
+
+        // Set up the "O" choice
+        oButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                action = ChooseSymbolFragmentDirections.actionChooseSymbolFragmentToAgainstJeffFragment("O");
+                Navigation.findNavController(view).navigate(action);
+            }
+        });
 
 
 
