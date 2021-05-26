@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/homeFragment">
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.personal.tictactoe.HomeFragment"
+        android:label="@string/app_name"
+        tools:layout="@layout/fragment_home">
+        <action
+            android:id="@+id/action_homeFragment_to_gameModeSelectorFragment"
+            app:destination="@id/gameModeSelectorFragment"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"
+            app:popEnterAnim="@android:anim/slide_in_left"
+            app:popExitAnim="@android:anim/slide_out_right" />
+    </fragment>
+    <fragment
+        android:id="@+id/gameModeSelectorFragment"
+        android:name="com.personal.tictactoe.GameModes.GameModeSelectorLogic.GameModeSelectorFragment"
+        android:label="@string/choose_game_mode"
+        tools:layout="@layout/fragment_game_mode_selector" >
+        <action
+            android:id="@+id/action_gameModeSelectorFragment_to_playerOnePromptFragment"
+            app:destination="@id/playerOnePromptFragment"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"
+            app:popEnterAnim="@android:anim/slide_in_left"
+            app:popExitAnim="@android:anim/slide_out_right" />
+    </fragment>
+    <fragment
+        android:id="@+id/localGameMenuFragment"
+        android:name="com.personal.tictactoe.GameModes.LocalGame.LocalGameMenuFragment"
+        android:label="fragment_local_game"
+        tools:layout="@layout/fragment_local_game_menu" />
+    <fragment
+        android:id="@+id/gameWithBotFragment"
+        android:name="com.personal.tictactoe.GameModes.AgainstJeffGame.AgainstJeffMenuFragment"
+        android:label="fragment_game_with_bot"
+        tools:layout="@layout/fragment_against_jeff_menu" />
+    <fragment
+        android:id="@+id/playerOnePromptFragment"
+        android:name="com.personal.tictactoe.GameModes.LocalGame.PlayerOnePromptFragment"
+        android:label="@string/player_one"
+        tools:layout="@layout/fragment_player_one_prompt">
+        <action
+            android:id="@+id/action_playerOnePromptFragment_to_playerTwoPromptFragment"
+            app:destination="@id/playerTwoPromptFragment"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right" />
+    </fragment>
+    <fragment
+        android:id="@+id/playerTwoPromptFragment"
+        android:name="com.personal.tictactoe.GameModes.LocalGame.PlayerTwoPromptFragment"
+        android:label="@string/player_two"
+        tools:layout="@layout/fragment_player_two_prompt">
+        <action
+            android:id="@+id/action_playerTwoPromptFragment_to_localGameFragment"
+            app:destination="@id/localGameFragment"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right" />
+        <argument
+            android:name="playerOneName"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/localGameFragment"
+        android:name="com.personal.tictactoe.GameModes.LocalGame.LocalGameFragment"
+        android:label="@string/app_name"
+        tools:layout="@layout/fragment_local_game" >
+        <argument
+            android:name="playerOneName"
+            app:argType="string" />
+        <argument
+            android:name="playerTwoName"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_localGameFragment_to_winnerFragment"
+            app:destination="@id/winnerFragment"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"
+            app:popEnterAnim="@android:anim/slide_in_left"
+            app:popExitAnim="@android:anim/slide_out_right" />
+        <action
+            android:id="@+id/action_localGameFragment_to_tieFragment"
+            app:destination="@id/tieFragment"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"
+            app:popEnterAnim="@android:anim/slide_in_left"
+            app:popExitAnim="@android:anim/slide_out_right" />
+    </fragment>
+    <fragment
+        android:id="@+id/winnerFragment"
+        android:name="com.personal.tictactoe.GameModes.LocalGame.WinnerFragment"
+        android:label="@string/results_label"
+        tools:layout="@layout/fragment_winner">
+        <argument
+            android:name="winner"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_winnerFragment_to_localGameFragment"
+            app:destination="@id/localGameFragment"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"
+            app:popEnterAnim="@android:anim/slide_in_left"
+            app:popExitAnim="@android:anim/slide_out_right"
+            app:popUpTo="@id/localGameFragment"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_winnerFragment_to_gameModeSelectorFragment"
+            app:destination="@id/gameModeSelectorFragment"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"
+            app:popEnterAnim="@android:anim/slide_in_left"
+            app:popExitAnim="@android:anim/slide_out_right"
+            app:popUpTo="@id/gameModeSelectorFragment"
+            app:popUpToInclusive="true" />
+        <argument
+            android:name="loser"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/tieFragment"
+        android:name="com.personal.tictactoe.GameModes.LocalGame.TieFragment"
+        android:label="@string/results_label"
+        tools:layout="@layout/fragment_tie">
+        <action
+            android:id="@+id/action_tieFragment_to_localGameFragment"
+            app:destination="@id/localGameFragment"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"
+            app:popEnterAnim="@android:anim/slide_in_left"
+            app:popExitAnim="@android:anim/slide_out_right"
+            app:popUpTo="@id/localGameFragment"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_tieFragment_to_gameModeSelectorFragment"
+            app:destination="@id/gameModeSelectorFragment"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"
+            app:popEnterAnim="@android:anim/slide_in_left"
+            app:popExitAnim="@android:anim/slide_out_right"
+            app:popUpTo="@id/gameModeSelectorFragment"
+            app:popUpToInclusive="true" />
+        <argument
+            android:name="playerOne"
+            app:argType="string" />
+        <argument
+            android:name="playerTwo"
+            app:argType="string" />
+    </fragment>
+</navigation>

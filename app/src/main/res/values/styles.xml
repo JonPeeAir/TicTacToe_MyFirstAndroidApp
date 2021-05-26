@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="gridButton_style">
+        <item name="android:width">105dp</item>
+        <item name="android:height">105dp</item>
+        <item name="backgroundTint">#1DFFFFFF</item>
+        <item name="android:layout_marginLeft">5dp</item>
+        <item name="android:layout_marginRight">5dp</item>
+        <item name="android:textColor">?attr/colorPrimary</item>
+        <item name="android:textSize">48dp</item>
+    </style>
+
+</resources>
