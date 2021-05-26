@@ -157,7 +157,7 @@
     </fragment>
     <fragment
         android:id="@+id/chooseSymbolFragment"
-        android:name="com.personal.tictactoe.ChooseSymbolFragment"
+        android:name="com.personal.tictactoe.GameModes.AgainstJeffGame.ChooseSymbolFragment"
         android:label="fragment_choose_symbol"
         tools:layout="@layout/fragment_choose_symbol" />
 </navigation>
