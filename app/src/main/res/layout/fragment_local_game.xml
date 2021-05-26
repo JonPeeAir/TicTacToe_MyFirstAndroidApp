@@ -8,11 +8,11 @@
 
     <!-- TODO: Update blank fragment layout -->
     <TextView
-        android:id="@+id/player_one_nameholder"
+        android:id="@+id/current_player_local"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="34sp"
-        app:layout_constraintBottom_toTopOf="@+id/tableLayout"
+        app:layout_constraintBottom_toTopOf="@+id/grid_local"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
@@ -20,7 +20,7 @@
         tools:text="@string/current_player_label" />
 
     <TableLayout
-        android:id="@+id/tableLayout"
+        android:id="@+id/grid_local"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -33,47 +33,21 @@
             android:layout_height="match_parent">
 
             <Button
-                android:id="@+id/button00"
+                android:id="@+id/button00_local"
                 style="@style/gridButton_style"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/empty_value" />
 
             <Button
-                android:id="@+id/button01"
+                android:id="@+id/button01_local"
                 style="@style/gridButton_style"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/empty_value" />
 
             <Button
-                android:id="@+id/button02"
-                style="@style/gridButton_style"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/empty_value" />
-        </TableRow>
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <Button
-                android:id="@+id/button10"
-                style="@style/gridButton_style"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/empty_value" />
-
-            <Button
-                android:id="@+id/button11"
-                style="@style/gridButton_style"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/empty_value" />
-
-            <Button
-                android:id="@+id/button12"
+                android:id="@+id/button02_local"
                 style="@style/gridButton_style"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -85,21 +59,47 @@
             android:layout_height="match_parent">
 
             <Button
-                android:id="@+id/button20"
+                android:id="@+id/button10_local"
                 style="@style/gridButton_style"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/empty_value" />
 
             <Button
-                android:id="@+id/button21"
+                android:id="@+id/button11_local"
                 style="@style/gridButton_style"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/empty_value" />
 
             <Button
-                android:id="@+id/button22"
+                android:id="@+id/button12_local"
+                style="@style/gridButton_style"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/empty_value" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <Button
+                android:id="@+id/button20_local"
+                style="@style/gridButton_style"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/empty_value" />
+
+            <Button
+                android:id="@+id/button21_local"
+                style="@style/gridButton_style"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/empty_value" />
+
+            <Button
+                android:id="@+id/button22_local"
                 style="@style/gridButton_style"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

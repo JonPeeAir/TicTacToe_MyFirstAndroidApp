@@ -159,7 +159,11 @@
         android:id="@+id/chooseSymbolFragment"
         android:name="com.personal.tictactoe.GameModes.AgainstJeffGame.ChooseSymbolFragment"
         android:label="fragment_choose_symbol"
-        tools:layout="@layout/fragment_choose_symbol" />
+        tools:layout="@layout/fragment_choose_symbol" >
+        <action
+            android:id="@+id/action_chooseSymbolFragment_to_againstJeffFragment"
+            app:destination="@id/againstJeffFragment" />
+    </fragment>
     <fragment
         android:id="@+id/againstJeffFragment"
         android:name="com.personal.tictactoe.GameModes.AgainstJeffGame.AgainstJeffFragment"

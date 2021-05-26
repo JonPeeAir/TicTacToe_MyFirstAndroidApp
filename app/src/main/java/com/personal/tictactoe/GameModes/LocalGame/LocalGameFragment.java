@@ -35,20 +35,20 @@ public class LocalGameFragment extends Fragment {
         playerTwoName = LocalGameFragmentArgs.fromBundle(getArguments()).getPlayerTwoName();
 
         //start with player one
-        currentPlayerTextView = view.findViewById(R.id.player_one_nameholder);
+        currentPlayerTextView = view.findViewById(R.id.current_player_local);
         itsPlayerOnesTurn = true;
 
         //create 2D array of gridButtons and initialize all of them
         TicTacToeGrid = new Button[3][3];
-        TicTacToeGrid[0][0] = view.findViewById(R.id.button00);
-        TicTacToeGrid[0][1] = view.findViewById(R.id.button01);
-        TicTacToeGrid[0][2] = view.findViewById(R.id.button02);
-        TicTacToeGrid[1][0] = view.findViewById(R.id.button10);
-        TicTacToeGrid[1][1] = view.findViewById(R.id.button11);
-        TicTacToeGrid[1][2] = view.findViewById(R.id.button12);
-        TicTacToeGrid[2][0] = view.findViewById(R.id.button20);
-        TicTacToeGrid[2][1] = view.findViewById(R.id.button21);
-        TicTacToeGrid[2][2] = view.findViewById(R.id.button22);
+        TicTacToeGrid[0][0] = view.findViewById(R.id.button00_local);
+        TicTacToeGrid[0][1] = view.findViewById(R.id.button01_local);
+        TicTacToeGrid[0][2] = view.findViewById(R.id.button02_local);
+        TicTacToeGrid[1][0] = view.findViewById(R.id.button10_local);
+        TicTacToeGrid[1][1] = view.findViewById(R.id.button11_local);
+        TicTacToeGrid[1][2] = view.findViewById(R.id.button12_local);
+        TicTacToeGrid[2][0] = view.findViewById(R.id.button20_local);
+        TicTacToeGrid[2][1] = view.findViewById(R.id.button21_local);
+        TicTacToeGrid[2][2] = view.findViewById(R.id.button22_local);
 
         return view;
     }
