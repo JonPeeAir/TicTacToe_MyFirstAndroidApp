@@ -30,6 +30,9 @@
             app:exitAnim="@android:anim/slide_out_right"
             app:popEnterAnim="@android:anim/slide_in_left"
             app:popExitAnim="@android:anim/slide_out_right" />
+        <action
+            android:id="@+id/action_gameModeSelectorFragment_to_chooseSymbolFragment"
+            app:destination="@id/chooseSymbolFragment" />
     </fragment>
     <fragment
         android:id="@+id/localGameMenuFragment"
@@ -152,4 +155,9 @@
             android:name="playerTwo"
             app:argType="string" />
     </fragment>
+    <fragment
+        android:id="@+id/chooseSymbolFragment"
+        android:name="com.personal.tictactoe.ChooseSymbolFragment"
+        android:label="fragment_choose_symbol"
+        tools:layout="@layout/fragment_choose_symbol" />
 </navigation>
