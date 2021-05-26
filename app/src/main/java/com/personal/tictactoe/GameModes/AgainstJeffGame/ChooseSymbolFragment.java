@@ -24,15 +24,19 @@ public class ChooseSymbolFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_choose_symbol, container, false);
+        View view = inflater.inflate(R.layout.fragment_choose_symbol, container, false);
+
+        xButton = view.findViewById(R.id.choice_x_button);
+        oButton = view.findViewById(R.id.choice_o_button);
+
+        return view;
     }
 
     @Override
     public void onViewCreated(@NonNull @NotNull View view, @Nullable @org.jetbrains.annotations.Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        xButton = view.findViewById(R.id.choice_x_button);
-        oButton = view.findViewById(R.id.choice_o_button);
+
 
 
 
