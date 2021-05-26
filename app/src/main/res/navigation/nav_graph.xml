@@ -158,8 +158,8 @@
     <fragment
         android:id="@+id/chooseSymbolFragment"
         android:name="com.personal.tictactoe.GameModes.AgainstJeffGame.ChooseSymbolFragment"
-        android:label="fragment_choose_symbol"
-        tools:layout="@layout/fragment_choose_symbol" >
+        android:label="@string/choose_a_symbol"
+        tools:layout="@layout/fragment_choose_symbol">
         <action
             android:id="@+id/action_chooseSymbolFragment_to_againstJeffFragment"
             app:destination="@id/againstJeffFragment" />
@@ -167,8 +167,8 @@
     <fragment
         android:id="@+id/againstJeffFragment"
         android:name="com.personal.tictactoe.GameModes.AgainstJeffGame.AgainstJeffFragment"
-        android:label="fragment_against_jeff"
-        tools:layout="@layout/fragment_against_jeff" >
+        android:label="@string/app_name"
+        tools:layout="@layout/fragment_against_jeff">
         <argument
             android:name="player_choice"
             app:argType="string" />
