@@ -1,5 +1,7 @@
 package com.personal.tictactoe.GameModes.AgainstJeffGame;
 
+import android.widget.Button;
+
 import com.personal.tictactoe.R;
 
 public class GameUtils {
@@ -12,6 +14,10 @@ public class GameUtils {
         X = "X";
         O = "O";
         EMPTY = "";
+    }
+
+    public static String[][] readBoard(Button[][] rawBoard){
+        return null;
     }
 
     public String player(String[][] board) {
