@@ -43,7 +43,9 @@ public class PlayerTwoPromptFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 String playerTwoName = playerTwoNamePrompt.getText().toString();
-                if (playerTwoName.equals("")) { playerTwoName = "Player 2"; }
+                if (playerTwoName.isEmpty()) {
+                    playerTwoName = "Player 2";
+                }
                 action = PlayerTwoPromptFragmentDirections.actionPlayerTwoPromptFragmentToLocalGameFragment(playerOneName, playerTwoName);
                 Navigation.findNavController(view).navigate(action);
             }

@@ -111,21 +111,27 @@ public class AgainstJeffFragment extends Fragment {
                         buttonFunctionality(button, buttonLocation, view);
 
                         // Read game state and if the board is terminal navigate to the appropriate results fragment
-                        checkGameBoard(view);
+                        boolean gameEnded = checkGameBoard(view);
 
-                        // We did not navigate to a results fragment so game is not yet terminal
-                        // Reload current player text view
-                        setCurrentPlayerTextView();
+                        if (!gameEnded){
+                            // We did not navigate to a results fragment so game is not yet terminal
+                            // Reload current player text view
+                            setCurrentPlayerTextView();
 
-                        // Jeff's turn to move
-                        playJeffMove(buttonLocation, view);
+                            // Jeff's turn to move
+                            playJeffMove(buttonLocation, view);
 
-                        // If game board is terminal, navigate to result and stuff
-                        checkGameBoard(view);
+                            // If game board is terminal, navigate to result and stuff
+                            gameEnded = checkGameBoard(view);
 
-                        // We did not navigate to a results fragment so game is not yet terminal
-                        // Reload current player text view
-                        setCurrentPlayerTextView();
+                            if (!gameEnded) {
+                                // We did not navigate to a results fragment so game is not yet terminal
+                                // Reload current player text view
+                                setCurrentPlayerTextView();
+                            }
+
+                        }
+
                     }
                 });
             }
@@ -195,7 +201,7 @@ public class AgainstJeffFragment extends Fragment {
         itsPlayersTurn = true;
     }
 
-    private void checkGameBoard(View view){
+    private boolean checkGameBoard(View view){
         String[][] readableBoard = GameUtils.readBoard(TicTacToeGrid);
         if (game.terminal(readableBoard)) {
             // Navigate to appropriate results fragment passing in the winner if there is one
@@ -204,18 +210,22 @@ public class AgainstJeffFragment extends Fragment {
                 AgainstJeffFragmentDirections.ActionAgainstJeffFragmentToTieFragment action;
                 action = AgainstJeffFragmentDirections.actionAgainstJeffFragmentToTieFragment("You", "Jeff");
                 Navigation.findNavController(view).navigate(action);
+                return true;
 
             } else if (winner.equals(playerSymbol)) {
                 AgainstJeffFragmentDirections.ActionAgainstJeffFragmentToWinnerFragment action;
                 action = AgainstJeffFragmentDirections.actionAgainstJeffFragmentToWinnerFragment("You", "Jeff");
                 Navigation.findNavController(view).navigate(action);
+                return true;
 
             } else if (winner.equals(jeffSymbol)) {
                 AgainstJeffFragmentDirections.ActionAgainstJeffFragmentToWinnerFragment action;
                 action = AgainstJeffFragmentDirections.actionAgainstJeffFragmentToWinnerFragment("Jeff", "You");
                 Navigation.findNavController(view).navigate(action);
+                return true;
             }
         }
+        return false;
     }
 
     private void setCurrentPlayerTextView(){

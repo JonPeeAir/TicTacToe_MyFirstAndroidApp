@@ -97,7 +97,7 @@
     </fragment>
     <fragment
         android:id="@+id/winnerFragment"
-        android:name="com.personal.tictactoe.GameModes.LocalGame.WinnerFragment"
+        android:name="com.personal.tictactoe.Results.WinnerFragment"
         android:label="@string/results_label"
         tools:layout="@layout/fragment_winner">
         <argument
@@ -132,7 +132,7 @@
     </fragment>
     <fragment
         android:id="@+id/tieFragment"
-        android:name="com.personal.tictactoe.GameModes.LocalGame.TieFragment"
+        android:name="com.personal.tictactoe.Results.TieFragment"
         android:label="@string/results_label"
         tools:layout="@layout/fragment_tie">
         <action
