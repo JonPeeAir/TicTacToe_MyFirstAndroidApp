@@ -124,6 +124,11 @@
         <argument
             android:name="loser"
             app:argType="string" />
+        <action
+            android:id="@+id/action_winnerFragment_to_chooseSymbolFragment"
+            app:destination="@id/chooseSymbolFragment"
+            app:popUpTo="@id/chooseSymbolFragment"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/tieFragment"
@@ -154,6 +159,11 @@
         <argument
             android:name="playerTwo"
             app:argType="string" />
+        <action
+            android:id="@+id/action_tieFragment_to_chooseSymbolFragment"
+            app:destination="@id/chooseSymbolFragment"
+            app:popUpTo="@id/chooseSymbolFragment"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/chooseSymbolFragment"
@@ -172,5 +182,11 @@
         <argument
             android:name="player_choice"
             app:argType="string" />
+        <action
+            android:id="@+id/action_againstJeffFragment_to_winnerFragment"
+            app:destination="@id/winnerFragment" />
+        <action
+            android:id="@+id/action_againstJeffFragment_to_tieFragment"
+            app:destination="@id/tieFragment" />
     </fragment>
 </navigation>

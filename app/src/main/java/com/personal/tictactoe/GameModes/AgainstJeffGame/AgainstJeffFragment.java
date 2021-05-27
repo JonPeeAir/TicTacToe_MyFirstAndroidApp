@@ -5,6 +5,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -106,6 +107,12 @@ public class AgainstJeffFragment extends Fragment {
         // This code runs whenever you're about to make your first move
         // Set button functionality for all buttons
         // Button functionality is now responsible for the rest of the game
+        initializeButtonFunctionality(view);
+
+
+    }
+
+    private void initializeButtonFunctionality(View view){
         for (int i = 0; i < TicTacToeGrid.length; i++) {
             for (int j = 0; j < TicTacToeGrid[i].length; j++) {
                 int[] buttonLocation = {i, j};
@@ -118,16 +125,25 @@ public class AgainstJeffFragment extends Fragment {
                 });
             }
         }
-
-
     }
 
     private void enableButtonFunctionality(){
-
+        for (int i = 0; i < TicTacToeGrid.length; i++) {
+            for (int j = 0; j < TicTacToeGrid[i].length; j++) {
+                TicTacToeGrid[i][j].setEnabled(true);
+            }
+        }
     }
 
-    private void disableButtonFunctionality(){
-
+    private void disableButtonFunctionality(int[] buttonLocation){
+        for (int i = 0; i < TicTacToeGrid.length; i++) {
+            for (int j = 0; j < TicTacToeGrid[i].length; j++) {
+                if (i == buttonLocation[0] && j == buttonLocation[1]){
+                    continue;
+                }
+                TicTacToeGrid[i][j].setEnabled(false);
+            }
+        }
     }
 
     //abstracted button functionality setup
@@ -136,24 +152,69 @@ public class AgainstJeffFragment extends Fragment {
         if (button.getText().toString().equals(" ")) {
             // Put player's symbol on there then switch to Jeff's turn
             button.setText(playerSymbol);
+            itsPlayersTurn = false;
+
+            // Read game state and if the board is terminal navigate to the appropriate results fragment
+            checkGameBoard(view);
+
+            // We did not navigate to a results fragment so game is not yet terminal
+            // Reload current player text view
+            setCurrentPlayerTextView();
+
+            // Jeff's turn to move
+            playJeffsMove(buttonLocation, view);
+
+            // If game board is terminal, navigate to result and stuff
+            checkGameBoard(view);
+
+            // We did not navigate to a results fragment so game is not yet terminal
+            // Reload current player text view
+            setCurrentPlayerTextView();
+
         }
 
-        // Read game state and if the board is terminal navigate to the appropriate results fragment
 
-        // If game is not yet terminal, reload current player text view
+    }
 
-        // Read the board again and calculate Jeff's move
+    private void playJeffsMove(int[] buttonLocation, View view){
+        // Read the current game board
+        String[][] readableBoard = GameUtils.readBoard(TicTacToeGrid);
 
-        // Disable the other buttons of the game board based on button location so we can
-        // focus on jeff
+        // Disable game board temporarily
+        disableButtonFunctionality(buttonLocation);
 
-        // Lets play Jeff's move and check if the game is terminal after that
+        // Get Jeff's action from minimax algorithm
+        int[] jeffsAction = game.minimax(readableBoard);
 
-        // If game board is terminal, navigate to result and stuff
+        // Play that action on the board
+        TicTacToeGrid[jeffsAction[0]][jeffsAction[1]].setText(jeffSymbol);
 
-        // If not, reload the current player text view and finish off the functionality by
-        // re-enabling the buttons all over again
+        // Re-enable button functionality
+        enableButtonFunctionality();
 
+        // Switch it to player's turn
+        itsPlayersTurn = true;
+    }
+
+    private void checkGameBoard(View view){
+        String[][] readableBoard = GameUtils.readBoard(TicTacToeGrid);
+        if (game.terminal(readableBoard)) {
+            // Navigate to appropriate results fragment passing in the winner if there is one
+            String winner = game.winner(readableBoard);
+            if (winner == null) {
+                AgainstJeffFragmentDirections.ActionAgainstJeffFragmentToTieFragment action;
+                action = AgainstJeffFragmentDirections.actionAgainstJeffFragmentToTieFragment("You", "Jeff");
+                Navigation.findNavController(view).navigate(action);
+            } else if (winner.equals(playerSymbol)) {
+                AgainstJeffFragmentDirections.ActionAgainstJeffFragmentToWinnerFragment action;
+                action = AgainstJeffFragmentDirections.actionAgainstJeffFragmentToWinnerFragment("You", "Jeff");
+                Navigation.findNavController(view).navigate(action);
+            } else if (winner.equals(jeffSymbol)) {
+                AgainstJeffFragmentDirections.ActionAgainstJeffFragmentToWinnerFragment action;
+                action = AgainstJeffFragmentDirections.actionAgainstJeffFragmentToWinnerFragment("Jeff", "You");
+                Navigation.findNavController(view).navigate(action);
+            }
+        }
     }
 
     private void setCurrentPlayerTextView(){
