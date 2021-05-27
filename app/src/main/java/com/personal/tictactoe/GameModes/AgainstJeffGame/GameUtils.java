@@ -6,6 +6,8 @@ import android.widget.Button;
 import com.personal.tictactoe.R;
 
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
 public class GameUtils {
 
@@ -60,9 +62,9 @@ public class GameUtils {
 
     }
 
-    public ArrayList<int[]> actions(String[][] board) {
+    public Set<int[]> actions(String[][] board) {
 
-        ArrayList<int[]> possibleActions = new ArrayList<>();
+        Set<int[]> possibleActions = new HashSet<>();
 
         for (int i = 0; i < board.length; i++) {
             for (int j = 0; j < board[i].length; j++) {
@@ -79,7 +81,7 @@ public class GameUtils {
 
     public String[][] result(String[][] board, int[] action) throws Exception {
 
-        ArrayList<int[]> possibleActions = actions(board);
+        Set<int[]> possibleActions = actions(board);
         boolean actionIsPossible = false;
         for (int[] possibleAction: possibleActions) {
             if (possibleAction[0] == action[0] && possibleAction[1] == action[1]) {
