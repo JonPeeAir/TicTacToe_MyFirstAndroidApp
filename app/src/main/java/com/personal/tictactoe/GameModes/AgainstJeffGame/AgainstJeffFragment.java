@@ -109,6 +109,23 @@ public class AgainstJeffFragment extends Fragment {
                     @Override
                     public void onClick(View v) {
                         buttonFunctionality(button, buttonLocation, view);
+
+                        // Read game state and if the board is terminal navigate to the appropriate results fragment
+                        checkGameBoard(view);
+
+                        // We did not navigate to a results fragment so game is not yet terminal
+                        // Reload current player text view
+                        setCurrentPlayerTextView();
+
+                        // Jeff's turn to move
+                        playJeffMove(buttonLocation, view);
+
+                        // If game board is terminal, navigate to result and stuff
+                        checkGameBoard(view);
+
+                        // We did not navigate to a results fragment so game is not yet terminal
+                        // Reload current player text view
+                        setCurrentPlayerTextView();
                     }
                 });
             }
@@ -145,23 +162,6 @@ public class AgainstJeffFragment extends Fragment {
             button.setText(playerSymbol);
             itsPlayersTurn = false;
 
-            // Read game state and if the board is terminal navigate to the appropriate results fragment
-            checkGameBoard(view);
-
-            // We did not navigate to a results fragment so game is not yet terminal
-            // Reload current player text view
-            setCurrentPlayerTextView();
-
-            // Jeff's turn to move
-            playJeffMove(buttonLocation, view);
-
-            // If game board is terminal, navigate to result and stuff
-            checkGameBoard(view);
-
-            // We did not navigate to a results fragment so game is not yet terminal
-            // Reload current player text view
-            setCurrentPlayerTextView();
-
         }
 
 
@@ -181,7 +181,7 @@ public class AgainstJeffFragment extends Fragment {
             jeffDecision = game.minimax(readableBoard, Integer.MIN_VALUE, Integer.MAX_VALUE);
             jeffMove = jeffDecision.getAction();
         } catch (Exception e) {
-            e.printStackTrace();
+            System.out.println("Error: " + e.getMessage());
         }
 
 

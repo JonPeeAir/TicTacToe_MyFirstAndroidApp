@@ -79,7 +79,15 @@ public class GameUtils {
 
     public String[][] result(String[][] board, int[] action) throws Exception {
 
-        if (!actions(board).contains(action)) {
+        ArrayList<int[]> possibleActions = actions(board);
+        boolean actionIsPossible = false;
+        for (int[] possibleAction: possibleActions) {
+            if (possibleAction[0] == action[0] && possibleAction[1] == action[1]) {
+                actionIsPossible = true;
+            }
+        }
+
+        if (actionIsPossible == false) {
             throw new Exception("Action error: invalid action");
         }
 
@@ -155,7 +163,9 @@ public class GameUtils {
 
     public int utility(String[][] board) {
 
-        if (winner(board).equals(X)) {
+        if (winner(board) == null) {
+            return 0;
+        } else if (winner(board).equals(X)) {
             return 1;
         } else if (winner(board).equals(O)) {
             return -1;
