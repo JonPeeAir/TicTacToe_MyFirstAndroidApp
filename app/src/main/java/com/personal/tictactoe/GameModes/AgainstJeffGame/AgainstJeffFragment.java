@@ -88,18 +88,7 @@ public class AgainstJeffFragment extends Fragment {
 
         // If Jeff gets first move
         if (!itsPlayersTurn) {
-            // Read the current game board
-            String[][] readableBoard = GameUtils.readBoard(TicTacToeGrid);
-
-            // Get Jeff's action from minimax algorithm
-            int[] jeffsAction = game.minimax(readableBoard);
-
-            // Play that action on the board
-            TicTacToeGrid[jeffsAction[0]][jeffsAction[1]].setText(jeffSymbol);
-
-            // Switch it to player's turn
-            itsPlayersTurn = true;
-
+            playJeffMove(null, view);
             // Reload current player text view
             setCurrentPlayerTextView();
         }
@@ -108,7 +97,6 @@ public class AgainstJeffFragment extends Fragment {
         // Set button functionality for all buttons
         // Button functionality is now responsible for the rest of the game
         initializeButtonFunctionality(view);
-
 
     }
 
@@ -138,7 +126,10 @@ public class AgainstJeffFragment extends Fragment {
     private void disableButtonFunctionality(int[] buttonLocation){
         for (int i = 0; i < TicTacToeGrid.length; i++) {
             for (int j = 0; j < TicTacToeGrid[i].length; j++) {
-                if (i == buttonLocation[0] && j == buttonLocation[1]){
+
+                if (buttonLocation == null) {
+                    // Do nothing
+                } else if (i == buttonLocation[0] && j == buttonLocation[1]) {
                     continue;
                 }
                 TicTacToeGrid[i][j].setEnabled(false);
@@ -162,7 +153,7 @@ public class AgainstJeffFragment extends Fragment {
             setCurrentPlayerTextView();
 
             // Jeff's turn to move
-            playJeffsMove(buttonLocation, view);
+            playJeffMove(buttonLocation, view);
 
             // If game board is terminal, navigate to result and stuff
             checkGameBoard(view);
@@ -176,7 +167,7 @@ public class AgainstJeffFragment extends Fragment {
 
     }
 
-    private void playJeffsMove(int[] buttonLocation, View view){
+    private void playJeffMove(int[] buttonLocation, View view){
         // Read the current game board
         String[][] readableBoard = GameUtils.readBoard(TicTacToeGrid);
 
@@ -184,10 +175,18 @@ public class AgainstJeffFragment extends Fragment {
         disableButtonFunctionality(buttonLocation);
 
         // Get Jeff's action from minimax algorithm
-        int[] jeffsAction = game.minimax(readableBoard);
+        ActionValue jeffDecision = null;
+        int[] jeffMove = null;
+        try {
+            jeffDecision = game.minimax(readableBoard, Integer.MIN_VALUE, Integer.MAX_VALUE);
+            jeffMove = jeffDecision.getAction();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
 
         // Play that action on the board
-        TicTacToeGrid[jeffsAction[0]][jeffsAction[1]].setText(jeffSymbol);
+        TicTacToeGrid[jeffMove[0]][jeffMove[1]].setText(jeffSymbol);
 
         // Re-enable button functionality
         enableButtonFunctionality();
@@ -205,10 +204,12 @@ public class AgainstJeffFragment extends Fragment {
                 AgainstJeffFragmentDirections.ActionAgainstJeffFragmentToTieFragment action;
                 action = AgainstJeffFragmentDirections.actionAgainstJeffFragmentToTieFragment("You", "Jeff");
                 Navigation.findNavController(view).navigate(action);
+
             } else if (winner.equals(playerSymbol)) {
                 AgainstJeffFragmentDirections.ActionAgainstJeffFragmentToWinnerFragment action;
                 action = AgainstJeffFragmentDirections.actionAgainstJeffFragmentToWinnerFragment("You", "Jeff");
                 Navigation.findNavController(view).navigate(action);
+
             } else if (winner.equals(jeffSymbol)) {
                 AgainstJeffFragmentDirections.ActionAgainstJeffFragmentToWinnerFragment action;
                 action = AgainstJeffFragmentDirections.actionAgainstJeffFragmentToWinnerFragment("Jeff", "You");
