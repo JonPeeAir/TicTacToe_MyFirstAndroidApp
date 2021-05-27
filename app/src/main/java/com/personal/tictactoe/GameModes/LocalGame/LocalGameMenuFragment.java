@@ -29,7 +29,7 @@ public class LocalGameMenuFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         //setup button that navigates to the local game mode
-        Button playButton = view.findViewById(R.id.play_button);
+        Button playButton = view.findViewById(R.id.local_play_button);
         playButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

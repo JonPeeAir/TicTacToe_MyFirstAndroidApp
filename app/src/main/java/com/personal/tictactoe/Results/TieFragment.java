@@ -1,4 +1,4 @@
-package com.personal.tictactoe.GameModes.LocalGame;
+package com.personal.tictactoe.Results;
 
 import android.os.Bundle;
 
@@ -44,9 +44,14 @@ public class TieFragment extends Fragment {
         playAgain.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                TieFragmentDirections.ActionTieFragmentToLocalGameFragment action;
-                action = TieFragmentDirections.actionTieFragmentToLocalGameFragment(playerOne, playerTwo);
-                Navigation.findNavController(view).navigate(action);
+                if (playerTwo.equals("Jeff")) {
+                    Navigation.findNavController(view).navigate(R.id.action_tieFragment_to_chooseSymbolFragment);
+                } else {
+                    TieFragmentDirections.ActionTieFragmentToLocalGameFragment action;
+                    action = TieFragmentDirections.actionTieFragmentToLocalGameFragment(playerOne, playerTwo);
+                    Navigation.findNavController(view).navigate(action);
+                }
+
             }
         });
 

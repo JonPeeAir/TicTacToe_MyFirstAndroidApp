@@ -25,4 +25,6 @@
     <string name="against_jeff">Play against Jeff</string>
     <string name="against_jeff_description">\"Who\'s Jeff?\" you might ask. Well only the greatest Tic Tac Toe player in the world. He is one of the world\'s top competitive Tic Tac Toe players and he is sure to <strike>beat your a..</strike> beat you up or at least tie the game. Don\'t believe me? See for yourself</string>
     <string name="working_on_it_label">working on it...</string>
+    <string name="choose_a_symbol">Choose a symbol</string>
+    <string name="jeff">just_jeff</string>
 </resources>
