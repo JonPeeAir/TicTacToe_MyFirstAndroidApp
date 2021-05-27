@@ -108,6 +108,11 @@ public class AgainstJeffFragment extends Fragment {
                 button.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+                        // Check if it is a valid move
+                        if (button.getText().toString().equals("X") || button.getText().toString().equals("O")) {
+                            return;
+                        }
+
                         buttonFunctionality(button, buttonLocation, view);
 
                         // Read game state and if the board is terminal navigate to the appropriate results fragment
